@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanban Board — Agustín Sánchez</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            mono: ['DM Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+    :root {
+      --font-sans: 'DM Sans', sans-serif;
+      --font-mono: 'DM Mono', monospace;
+      --color-bg:      #fafaf8;
+      --color-surface: #f2f1ee;
+      --color-border:  #e2e1dd;
+      --color-text:    #1a1a18;
+      --color-muted:   #6b6b67;
+      --color-faint:   #a0a09c;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --max-width: 720px;
+      --side-pad: 2rem;
+    }
+ 
+    html { scroll-behavior: smooth; }
+ 
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+ 
+    a { color: inherit; text-decoration: none; }
+ 
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: 1rem 0;
+    }
+ 
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--side-pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+ 
+    .nav-back {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--color-muted);
+      transition: color 0.15s;
+    }
+    .nav-back:hover { color: var(--color-text); }
+ 
+    .nav-logo {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--color-muted);
+    }
+    .nav-logo span { color: var(--color-text); font-weight: 500; }
+ 
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--side-pad);
+    }
+ 
+    .project-hero {
+      padding: 4rem 0 3rem;
+      border-bottom: 1px solid var(--color-border);
+    }
+ 
+    .project-label {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--color-faint);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+ 
+    .project-title {
+      font-size: clamp(30px, 6vw, 48px);
+      font-weight: 300;
+      letter-spacing: -1.5px;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+ 
+    .project-title strong { font-weight: 500; }
+ 
+    .project-summary {
+      font-size: 15px;
+      color: var(--color-muted);
+      max-width: 520px;
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .project-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+ 
+    .meta-tag {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      padding: 4px 12px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-muted);
+      background: var(--color-surface);
+    }
+ 
+    .meta-tag.featured {
+      border-color: var(--color-text);
+      color: var(--color-text);
+      background: var(--color-bg);
+    }
+ 
+    section {
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+ 
+    section:last-of-type { border-bottom: none; }
+ 
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+ 
+    .section-title {
+      font-size: 13px;
+      font-family: var(--font-mono);
+      letter-spacing: 0.08em;
+      color: var(--color-faint);
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+ 
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--color-border);
+    }
+ 
+    .feature-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+ 
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+ 
+    .feature-list li::before {
+      content: '→';
+      font-family: var(--font-mono);
+      color: var(--color-faint);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+ 
+    .code-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      overflow-x: auto;
+    }
+ 
+    .code-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+ 
+    .code-block pre {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--color-text);
+      line-height: 1.75;
+      white-space: pre;
+    }
+ 
+    .kw  { color: #7c5cbb; }
+    .fn  { color: #2a7a5a; }
+    .str { color: #b85c38; }
+    .cm  { color: var(--color-faint); font-style: italic; }
+    .tp  { color: #2a5a7a; }
+ 
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+    }
+ 
+    footer p {
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--color-faint);
+    }
+ 
+    /* drag over highlight */
+    .drag-over {
+      outline: 2px dashed #a0a09c;
+      outline-offset: -4px;
+    }
+ 
+    @media (max-width: 600px) {
+      :root { --side-pad: 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+ 
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="nav-back">← volver al portfolio</a>
+      <span class="nav-logo">as<span> / proyectos</span></span>
+    </div>
+  </nav>
+ 
+  <main class="container">
+ 
+    <div class="project-hero">
+      <p class="project-label">proyecto 02</p>
+      <h1 class="project-title"><strong>Kanban</strong> Board</h1>
+      <p class="project-summary">
+        Tablero de tareas estilo Kanban con tres columnas: Por hacer, En progreso y Listo.
+        Drag &amp; drop entre columnas, persistencia en localStorage y formulario para agregar tareas.
+      </p>
+      <div class="project-meta">
+        <span class="meta-tag featured">React</span>
+        <span class="meta-tag featured">Tailwind CSS</span>
+        <span class="meta-tag">localStorage</span>
+        <span class="meta-tag">Drag &amp; Drop</span>
+        <span class="meta-tag">useState</span>
+      </div>
+    </div>
+ 
+    <!-- APP -->
+    <section>
+      <div class="section-header">
+        <span class="section-title">demo en vivo</span>
+        <div class="section-line"></div>
+      </div>
+      <div id="kanban-root"></div>
+    </section>
+ 
+    <!-- FUNCIONALIDADES -->
+    <section>
+      <div class="section-header">
+        <span class="section-title">funcionalidades</span>
+        <div class="section-line"></div>
+      </div>
+      <ul class="feature-list">
+        <li>Tres columnas: Por hacer, En progreso y Listo.</li>
+        <li>Formulario para agregar tareas con título y descripción.</li>
+        <li>Drag &amp; drop nativo del navegador para mover tarjetas entre columnas.</li>
+        <li>Persistencia en localStorage: las tareas sobreviven al recargar la página.</li>
+        <li>Botón para eliminar cada tarea individualmente.</li>
+        <li>Contador de tareas por columna.</li>
+      </ul>
+    </section>
+ 
+    <!-- CÓDIGO DESTACADO -->
+    <section>
+      <div class="section-header">
+        <span class="section-title">código destacado</span>
+        <div class="section-line"></div>
+      </div>
+      <div class="code-block">
+        <p class="code-label">kanban.jsx</p>
+        <pre><span class="cm">// Persistencia: carga y guarda en localStorage</span>
+<span class="kw">const</span> [tasks, setTasks] = <span class="fn">useState</span>(() => {
+  <span class="kw">const</span> saved = localStorage.<span class="fn">getItem</span>(<span class="str">'kanban-tasks'</span>);
+  <span class="kw">return</span> saved ? <span class="fn">JSON.parse</span>(saved) : initialTasks;
+});
+ 
+<span class="fn">useEffect</span>(() => {
+  localStorage.<span class="fn">setItem</span>(<span class="str">'kanban-tasks'</span>, <span class="fn">JSON.stringify</span>(tasks));
+}, [tasks]);
+ 
+<span class="cm">// Mover tarea entre columnas al soltar</span>
+<span class="kw">const</span> <span class="fn">handleDrop</span> = (e, targetColumn) => {
+  <span class="kw">const</span> taskId = e.dataTransfer.<span class="fn">getData</span>(<span class="str">'taskId'</span>);
+  <span class="fn">setTasks</span>(prev => prev.<span class="fn">map</span>(t =>
+    t.id === taskId ? { ...t, column: targetColumn } : t
+  ));
+};</pre>
+      </div>
+    </section>
+ 
+  </main>
+ 
+  <footer>
+    <div class="container">
+      <p>Agustín Sánchez · 2025</p>
+    </div>
+  </footer>
+ 
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+ 
+    const COLUMNS = [
+      { id: 'todo',       label: 'Por hacer',    color: 'bg-slate-100',  dot: 'bg-slate-400'  },
+      { id: 'inprogress', label: 'En progreso',  color: 'bg-blue-50',    dot: 'bg-blue-400'   },
+      { id: 'done',       label: 'Listo',         color: 'bg-green-50',   dot: 'bg-green-400'  },
+    ];
+ 
+    const INITIAL_TASKS = [
+      { id: '1', title: 'Diseñar wireframes', description: 'Bocetos de las pantallas principales.', column: 'todo' },
+      { id: '2', title: 'Configurar proyecto', description: 'Inicializar repo y dependencias.', column: 'inprogress' },
+      { id: '3', title: 'Setup de rutas', description: 'Estructura de navegación básica.', column: 'done' },
+    ];
+ 
+    function generateId() {
+      return Date.now().toString(36) + Math.random().toString(36).slice(2);
+    }
+ 
+    // ── TaskCard ──────────────────────────────────────────
+    function TaskCard({ task, onDelete }) {
+      const handleDragStart = (e) => {
+        e.dataTransfer.setData('taskId', task.id);
+        e.dataTransfer.effectAllowed = 'move';
+      };
+ 
+      return (
+        <div
+          draggable
+          onDragStart={handleDragStart}
+          className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm cursor-grab active:cursor-grabbing group hover:shadow-md hover:-translate-y-0.5 transition-all duration-150"
+        >
+          <div className="flex items-start justify-between gap-2">
+            <h3 className="text-sm font-medium text-gray-800 leading-snug">{task.title}</h3>
+            <button
+              onClick={() => onDelete(task.id)}
+              className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-300 hover:text-red-400 text-lg leading-none flex-shrink-0 mt-0.5"
+              title="Eliminar"
+            >×</button>
+          </div>
+          {task.description && (
+            <p className="text-xs text-gray-400 mt-1.5 leading-relaxed">{task.description}</p>
+          )}
+        </div>
+      );
+    }
+ 
+    // ── Column ────────────────────────────────────────────
+    function Column({ column, tasks, onDrop, onDelete }) {
+      const [isDragOver, setIsDragOver] = useState(false);
+ 
+      const handleDragOver = (e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = 'move';
+        setIsDragOver(true);
+      };
+ 
+      const handleDragLeave = () => setIsDragOver(false);
+ 
+      const handleDrop = (e) => {
+        setIsDragOver(false);
+        onDrop(e, column.id);
+      };
+ 
+      return (
+        <div className="flex flex-col gap-3 min-w-0">
+          {/* Header */}
+          <div className="flex items-center gap-2 px-1">
+            <span className={`w-2 h-2 rounded-full flex-shrink-0 ${column.dot}`}></span>
+            <span className="text-xs font-mono text-gray-500 uppercase tracking-wider">{column.label}</span>
+            <span className="ml-auto text-xs font-mono text-gray-300">{tasks.length}</span>
+          </div>
+ 
+          {/* Drop zone */}
+          <div
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            className={`flex flex-col gap-2 min-h-48 rounded-xl p-2 transition-all duration-150 ${column.color} ${isDragOver ? 'ring-2 ring-gray-300 ring-offset-1' : ''}`}
+          >
+            {tasks.map(task => (
+              <TaskCard key={task.id} task={task} onDelete={onDelete} />
+            ))}
+            {tasks.length === 0 && (
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-xs font-mono text-gray-300">sin tareas</p>
+              </div>
+            )}
+          </div>
+        </div>
+      );
+    }
+ 
+    // ── AddTaskForm ───────────────────────────────────────
+    function AddTaskForm({ onAdd }) {
+      const [open, setOpen]         = useState(false);
+      const [title, setTitle]       = useState('');
+      const [desc, setDesc]         = useState('');
+      const [column, setColumn]     = useState('todo');
+      const titleRef                = useRef(null);
+ 
+      useEffect(() => {
+        if (open) titleRef.current?.focus();
+      }, [open]);
+ 
+      const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!title.trim()) return;
+        onAdd({ id: generateId(), title: title.trim(), description: desc.trim(), column });
+        setTitle('');
+        setDesc('');
+        setColumn('todo');
+        setOpen(false);
+      };
+ 
+      if (!open) return (
+        <button
+          onClick={() => setOpen(true)}
+          className="w-full flex items-center justify-center gap-2 py-2.5 px-4 border border-dashed border-gray-300 rounded-xl text-sm font-mono text-gray-400 hover:text-gray-600 hover:border-gray-400 transition-all duration-150"
+        >
+          + nueva tarea
+        </button>
+      );
+ 
+      return (
+        <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm flex flex-col gap-3">
+          <input
+            ref={titleRef}
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            placeholder="Título de la tarea"
+            className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-gray-400 transition-colors font-sans"
+          />
+          <textarea
+            value={desc}
+            onChange={e => setDesc(e.target.value)}
+            placeholder="Descripción (opcional)"
+            rows={2}
+            className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-gray-400 transition-colors resize-none font-sans"
+          />
+          <select
+            value={column}
+            onChange={e => setColumn(e.target.value)}
+            className="w-full text-sm border border-gray-200 rounded-lg px-3 py-2 outline-none focus:border-gray-400 transition-colors font-mono text-gray-500 bg-white"
+          >
+            {COLUMNS.map(c => (
+              <option key={c.id} value={c.id}>{c.label}</option>
+            ))}
+          </select>
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="flex-1 bg-gray-900 text-white text-sm font-mono py-2 rounded-lg hover:bg-gray-700 transition-colors"
+            >
+              agregar
+            </button>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="flex-1 border border-gray-200 text-gray-500 text-sm font-mono py-2 rounded-lg hover:bg-gray-50 transition-colors"
+            >
+              cancelar
+            </button>
+          </div>
+        </form>
+      );
+    }
+ 
+    // ── KanbanApp ─────────────────────────────────────────
+    function KanbanApp() {
+      const [tasks, setTasks] = useState(() => {
+        try {
+          const saved = localStorage.getItem('kanban-tasks');
+          return saved ? JSON.parse(saved) : INITIAL_TASKS;
+        } catch {
+          return INITIAL_TASKS;
+        }
+      });
+ 
+      useEffect(() => {
+        localStorage.setItem('kanban-tasks', JSON.stringify(tasks));
+      }, [tasks]);
+ 
+      const handleDrop = (e, targetColumn) => {
+        const taskId = e.dataTransfer.getData('taskId');
+        setTasks(prev => prev.map(t =>
+          t.id === taskId ? { ...t, column: targetColumn } : t
+        ));
+      };
+ 
+      const handleAdd = (task) => {
+        setTasks(prev => [...prev, task]);
+      };
+ 
+      const handleDelete = (id) => {
+        setTasks(prev => prev.filter(t => t.id !== id));
+      };
+ 
+      const handleClearDone = () => {
+        setTasks(prev => prev.filter(t => t.column !== 'done'));
+      };
+ 
+      const doneTasks = tasks.filter(t => t.column === 'done');
+ 
+      return (
+        <div className="flex flex-col gap-5">
+          {/* Board */}
+          <div className="grid grid-cols-3 gap-4">
+            {COLUMNS.map(col => (
+              <Column
+                key={col.id}
+                column={col}
+                tasks={tasks.filter(t => t.column === col.id)}
+                onDrop={handleDrop}
+                onDelete={handleDelete}
+              />
+            ))}
+          </div>
+ 
+          {/* Actions */}
+          <div className="flex items-center gap-3">
+            <div className="flex-1">
+              <AddTaskForm onAdd={handleAdd} />
+            </div>
+            {doneTasks.length > 0 && (
+              <button
+                onClick={handleClearDone}
+                className="text-xs font-mono text-gray-300 hover:text-red-400 transition-colors whitespace-nowrap"
+              >
+                limpiar listo ({doneTasks.length})
+              </button>
+            )}
+          </div>
+        </div>
+      );
+    }
+ 
+    ReactDOM.createRoot(document.getElementById('kanban-root')).render(<KanbanApp />);
+  </script>
