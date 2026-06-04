@@ -254,9 +254,85 @@
     }
  
     btn.addEventListener('click', () => {
-      const isDark = html.getAttribute('data-theme') === 'dark';
+    const isDark = html.getAttribute('data-theme') === 'dark';
       html.setAttribute('data-theme', isDark ? 'light' : 'dark');
       localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    });
+
+    const translations = {
+      es: {
+        'nav.about':              'sobre mí',
+        'nav.experience':         'experiencia',
+        'nav.projects':           'proyectos',
+        'nav.contact':            'contacto',
+        'hero.label':             'fullstack developer',
+        'hero.desc':              'Tu descripción va acá.',
+        'hero.contact':           'Contacto',
+        'sections.technologies':  'tecnologías',
+        'sections.experience':    'experiencia',
+        'sections.projects':      'proyectos',
+        'sections.education':     'educación',
+        'sections.contact':       'contacto',
+        'exp.1.date':             '2023 — hoy',
+        'exp.1.role':             'Desarrollador Fullstack',
+        'exp.1.company':          'Empresa / Proyecto',
+        'exp.1.desc':             'Descripción breve de tus responsabilidades y tecnologías usadas.',
+        'exp.2.role':             'Desarrollador Frontend',
+        'exp.2.company':          'Empresa anterior',
+        'exp.2.desc':             'Descripción breve. Podés mencionar proyectos destacados o logros.',
+        'proj.1.desc':            'Buscá cualquier Pokémon por número o nombre y consultá su tipo, sprite y estadísticas base en tiempo real.',
+        'proj.2.desc':            'Tablero de tareas con drag & drop entre columnas, persistencia en localStorage y formulario para agregar tareas.',
+        'proj.more':              'ver más →',
+        'edu.1.title':            'Nombre del título / carrera',
+        'edu.1.institution':      'Institución',
+      },
+      en: {
+        'nav.about':              'about',
+        'nav.experience':         'experience',
+        'nav.projects':           'projects',
+        'nav.contact':            'contact',
+        'hero.label':             'fullstack developer',
+        'hero.desc':              'Your description goes here.',
+        'hero.contact':           'Contact',
+        'sections.technologies':  'technologies',
+        'sections.experience':    'experience',
+        'sections.projects':      'projects',
+        'sections.education':     'education',
+        'sections.contact':       'contact',
+        'exp.1.date':             '2023 — present',
+        'exp.1.role':             'Fullstack Developer',
+        'exp.1.company':          'Company / Project',
+        'exp.1.desc':             'Brief description of your responsibilities and technologies used.',
+        'exp.2.role':             'Frontend Developer',
+        'exp.2.company':          'Previous company',
+        'exp.2.desc':             'Brief description. You can mention notable projects or achievements.',
+        'proj.1.desc':            'Search any Pokémon by number or name and check its type, sprite and base stats in real time.',
+        'proj.2.desc':            'Task board with drag & drop between columns, localStorage persistence and a form to add tasks.',
+        'proj.more':              'see more →',
+        'edu.1.title':            'Degree / Program name',
+        'edu.1.institution':      'Institution',
+      }
+    };
+ 
+    let currentLang = localStorage.getItem('lang') || 'es';
+ 
+    function applyLang(lang) {
+      const dict = translations[lang];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.getElementById('langLabel').textContent = lang === 'es' ? 'EN' : 'ES';
+      htmlEl.setAttribute('lang', lang);
+      localStorage.setItem('lang', lang);
+    }
+ 
+    // Aplicar idioma guardado al cargar
+    applyLang(currentLang);
+ 
+    document.getElementById('langToggle').addEventListener('click', () => {
+      currentLang = currentLang === 'es' ? 'en' : 'es';
+      applyLang(currentLang);
     });
   </script>
 

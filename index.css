@@ -1,3 +1,4 @@
+CSS
 /* ── Reset & Variables ─────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -407,6 +408,42 @@ footer p {
 .hero .hero-desc   { animation-delay: 0.20s; }
 .hero .hero-links  { animation-delay: 0.28s; }
  
+/* ── Nav Actions (agrupa los botones del nav) ──────── */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+ 
+/* ── Lang Toggle ───────────────────────────────────── */
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+ 
+.lang-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--color-muted);
+  letter-spacing: 0.08em;
+}
+ 
+.lang-toggle:hover {
+  border-color: var(--color-text);
+  background: var(--color-surface);
+}
+ 
+.lang-toggle:hover .lang-label { color: var(--color-text); }
+ 
 /* ── Theme Toggle ──────────────────────────────────── */
 .theme-toggle {
   display: flex;
@@ -478,4 +515,3 @@ footer p {
  
   .nav-links { display: none; }
 }
- 
