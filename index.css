@@ -407,6 +407,65 @@ footer p {
 .hero .hero-desc   { animation-delay: 0.20s; }
 .hero .hero-links  { animation-delay: 0.28s; }
  
+/* ── Theme Toggle ──────────────────────────────────── */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+ 
+.theme-toggle:hover {
+  color: var(--color-text);
+  border-color: var(--color-text);
+  background: var(--color-surface);
+}
+ 
+/* Mostrar sol en dark, luna en light */
+.icon-moon { display: block; }
+.icon-sun  { display: none;  }
+ 
+[data-theme="dark"] .icon-moon { display: none;  }
+[data-theme="dark"] .icon-sun  { display: block; }
+ 
+/* ── Dark Mode ─────────────────────────────────────── */
+[data-theme="dark"] {
+  --color-bg:      #111110;
+  --color-surface: #1a1a18;
+  --color-border:  #2a2a28;
+  --color-text:    #f0ede8;
+  --color-muted:   #9a9a94;
+  --color-faint:   #5a5a56;
+  --color-accent:  #f0ede8;
+}
+ 
+[data-theme="dark"] body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+ 
+[data-theme="dark"] nav {
+  background: var(--color-bg);
+}
+ 
+[data-theme="dark"] .btn.primary {
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+ 
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .skill-tag {
+  background: var(--color-surface);
+}
+ 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 600px) {
   :root { --side-pad: 1.25rem; }
