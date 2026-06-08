@@ -171,7 +171,7 @@
         <span class="timeline-date" data-i18n="edu.1.date">2015 — 2021</span>
         <div class="timeline-body">
           <h3 data-i18n="edu.1.title">Bachiller en informatica</h3>
-          <p class="company" data-i18n="edu.1.school">Instituto Jose Peña - Colegio secundario</p>
+          <p class="company" data-i18n="edu.1.institution">Instituto Jose Peña - Colegio secundario</p>
         </div>
       </div>
  
@@ -179,7 +179,7 @@
         <span class="timeline-date" data-i18n="edu.2.date">2022 — En curso</span>
         <div class="timeline-body">
           <h3 data-i18n="edu.2.title">Ingenieria en Sistemas de informacion</h3>
-          <p class="company" data-i18n="edu.2.school">Universidad Tecnologica de Cordoba - FRC</p>
+          <p class="company" data-i18n="edu.2.institution">Universidad Tecnologica de Cordoba - FRC</p>
         </div>
       </div>
 
@@ -187,7 +187,7 @@
         <span class="timeline-date" data-i18n="edu.3.date">2010 — 2019</span>
         <div class="timeline-body">
           <h3 data-i18n="edu.3.title">Academia de Ingles</h3>
-          <p class="company" data-i18n="edu.3.school">IICANA</p>
+          <p class="company" data-i18n="edu.3.institution">IICANA</p>
         </div>
       </div>
 
@@ -195,7 +195,7 @@
         <span class="timeline-date" data-i18n="edu.4.date">2019</span>
         <div class="timeline-body">
           <h3 data-i18n="edu.4.title">ECCE - Examen de Certificación de Inglés - Nivel B2</h3>
-          <p class="company" data-i18n="edu.4.school">Michigan University</p>
+          <p class="company" data-i18n="edu.4.institution">Michigan University</p>
         </div>
       </div>
     </section>
@@ -292,10 +292,12 @@
         'proj.more':              'ver más →',
         'edu.1.title':            'Bachiller en informática',
         'edu.1.institution':      'Instituto Jose Peña - Colegio secundario',
-        'edu.2.title':            'Academia de inglés',
-        'edu.2.institution':      'IICANA',
-        'edu.3.title':            'Ingeniería en Sistemas de Información',
-        'edu.3.institution':      'Universidad Tecnológica de Córdoba - FRC',
+        'edu.2.title':            'Ingeniería en Sistemas de Información',
+        'edu.2.institution':      'Universidad Tecnológica de Córdoba - FRC',
+        'edu.3.title':            'Academia de Inglés',
+        'edu.3.institution':      'IICANA',
+        'edu.4.title':            'ECCE - Examen de Certificación de Inglés - Nivel B2',
+        'edu.4.institution':      'Universidad de Michigan',
       },
       en: {
         'nav.about':              'about me',
@@ -319,19 +321,19 @@
         'exp.2.desc':             'Brief description. You can mention notable projects or achievements.',
         'proj.1.desc':            'Search any Pokémon by number or name and check its type, sprite and base stats in real time.',
         'proj.2.desc':            'Task board with drag & drop between columns, localStorage persistence and a form to add tasks.',
-        'proj.more':              'see more →',
-        'edu.1.title':            'Bachiller en informatica',
+        'proj.more':              'See more →',
+        'edu.1.title':            'Bachiller en informática',
         'edu.1.institution':      'Instituto Jose Peña - Colegio secundario',
-        'edu.2.title':            'Ingenieria en Sistemas de informacion',
-        'edu.2.institution':      'Universidad Tecnologica de Cordoba - FRC',
-        'edu.3.title':            'Academia de Ingles',
+        'edu.2.title':            'Systems Information Engineering',
+        'edu.2.institution':      'Cordoba Technological University - FRC',
+        'edu.3.title':            'English Academy',
         'edu.3.institution':      'IICANA',
-        'edu.4.title':            'ECCE - Examen de Certificación de Inglés - Nivel B2',
-        'edu.4.institution':      'Michigan University',
+        'edu.4.title':            'ECCE - Examination for the Certificate of Competency in English- Level B2',
+        'edu.4.institution':      'Universidad de Michigan',
       }
     };
  
-    let currentLang = localStorage.getItem('lang') || 'es';
+     let currentLang = 'es';
  
     function applyLang(lang) {
       const dict = translations[lang];
@@ -344,8 +346,6 @@
       localStorage.setItem('lang', lang);
     }
  
-    // Aplicar idioma guardado al cargar
-    applyLang(currentLang);
  
     document.getElementById('langToggle').addEventListener('click', () => {
       currentLang = currentLang === 'es' ? 'en' : 'es';
