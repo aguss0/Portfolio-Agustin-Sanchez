@@ -6,6 +6,7 @@
   <title>Agustín Sánchez — Fullstack Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css" />
   <link rel="stylesheet" href="index.css" />
 </head>
 <body>
@@ -73,19 +74,21 @@
         <span class="section-title" data-i18n="sections.technologies">tecnologías</span>
         <div class="section-line"></div>
       </div>
+      <p class="skills-intro" data-i18n="skills.intro">Herramientas y tecnologías que utilizo para transformar ideas en soluciones funcionales.</p>
       <div class="skills-grid">
         <!-- Tecnologías destacadas -->
-        <span class="skill-tag featured">TypeScript</span>
-        <span class="skill-tag featured">JavaScript</span>
-        <span class="skill-tag featured">Node.js</span>
+        <span class="skill-tag featured"><i class="devicon-typescript-plain colored" aria-hidden="true"></i>TypeScript</span>
+        <span class="skill-tag featured"><i class="devicon-javascript-plain colored" aria-hidden="true"></i>JavaScript</span>
+        <span class="skill-tag featured"><i class="devicon-nodejs-plain-wordmark colored" aria-hidden="true"></i>Node.js</span>
         <!-- Otras -->
-        <span class="skill-tag">React</span>
-        <span class="skill-tag">Express</span>
-        <span class="skill-tag">REST APIs</span>
-        <span class="skill-tag">SQL</span>
-        <span class="skill-tag">HTML</span>
-        <span class="skill-tag">CSS</span>
-        <span class="skill-tag">Git</span>
+        <span class="skill-tag"><i class="devicon-python-plain colored" aria-hidden="true"></i>Python</span>
+        <span class="skill-tag"><i class="devicon-react-original colored" aria-hidden="true"></i>React</span>
+        <span class="skill-tag"><i class="devicon-express-original" aria-hidden="true"></i>Express</span>
+        <span class="skill-tag"><span class="skill-symbol" aria-hidden="true">{ }</span>REST APIs</span>
+        <span class="skill-tag"><i class="devicon-azuresqldatabase-plain colored" aria-hidden="true"></i>SQL</span>
+        <span class="skill-tag"><i class="devicon-html5-plain colored" aria-hidden="true"></i>HTML5</span>
+        <span class="skill-tag"><i class="devicon-css3-plain colored" aria-hidden="true"></i>CSS3</span>
+        <span class="skill-tag"><i class="devicon-git-plain colored" aria-hidden="true"></i>Git</span>
         <!-- Agregá o quitá los que quieras -->
       </div>
     </section>
@@ -108,11 +111,11 @@
         </div>
  
         <div class="timeline-item">
-          <span class="timeline-date">2021 — 2025</span>
+          <span class="timeline-date" data-i18n="exp.2.date">2021 — 2025</span>
           <div class="timeline-body">
             <h3 data-i18n="exp.2.role">Vendedor en negocio familiar</h3>
             <p class="company" data-i18n="exp.2.company">Grandiet - Negocio familiar</p>
-            <p>Trabajaba en el área de ventas y atención al cliente.</p>
+            <p data-i18n="exp.2.desc">Trabajaba en el área de ventas y atención al cliente.</p>
           </div>
         </div>
  
@@ -129,7 +132,7 @@
       </div>
       <div class="projects-grid">
  
-        <a href="project-1.html" class="project-card">
+        <a href="https://pokedexx-as.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card">
           <h3>Pokédex App</h3>
           <p data-i18n="proj.1.desc">Buscá cualquier Pokémon por número o nombre y consultá su tipo, sprite y estadísticas base en tiempo real.</p>
           <div class="project-footer">
@@ -142,7 +145,7 @@
           </div>
         </a>
  
-        <a href="project-2.html" class="project-card">
+        <a href="https://trazo-as.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card">
           <h3>Kanban Board</h3>
           <p data-i18n="proj.2.desc">Tablero de tareas con drag & drop entre columnas, persistencia en localStorage y formulario para agregar tareas.</p>
           <div class="project-footer">
@@ -150,6 +153,19 @@
               <span class="project-tag">React</span>
               <span class="project-tag">Tailwind</span>
               <span class="project-tag">localStorage</span>
+            </div>
+            <span class="project-link" data-i18n="proj.more">ver más →</span>
+          </div>
+        </a>
+
+        <a href="https://rank-itt.vercel.app" target="_blank" rel="noopener noreferrer" class="project-card">
+          <h3>Rank It</h3>
+          <p data-i18n="proj.3.desc">Creá rankings personalizados sobre cualquier tema y organizá tus opciones de forma simple e intuitiva.</p>
+          <div class="project-footer">
+            <div class="project-tags">
+              <span class="project-tag">Rankings</span>
+              <span class="project-tag">Lists</span>
+              <span class="project-tag">Web App</span>
             </div>
             <span class="project-link" data-i18n="proj.more">ver más →</span>
           </div>
@@ -273,29 +289,36 @@
         'nav.projects':           'proyectos',
         'nav.contact':            'contacto',
         'hero.label':             'fullstack developer',
-        'hero.desc':              'Sobre mí  Soy estudiante de Ingeniería en Sistemas de Información (UTN Córdoba) con una fuerte inclinación hacia el desarrollo de software y la resolución de problemas. Mi stack actual se divide en dos grandes pilares:<br>Backend & Lógica: Experiencia sólida y fundamentos con Python Desarrollo Web Full-Stack: Creando soluciones dinámicas con JavaScript, Node.js, HTML5 y CSS3 Me motiva el aprendizaje continuo y llevar los proyectos desde el código local hasta el deployment en producción.',
+        'hero.desc':              'Soy estudiante de Ingeniería en Sistemas de Información (UTN Córdoba) con una fuerte inclinación hacia el desarrollo de software y la resolución de problemas. Mi stack actual se divide en dos grandes pilares:<br>Backend & Lógica: Experiencia sólida y fundamentos con Python Desarrollo Web Full-Stack: Creando soluciones dinámicas con JavaScript, Node.js, HTML5 y CSS3 Me motiva el aprendizaje continuo y llevar los proyectos desde el código local hasta el deployment en producción.',
         'hero.contact':           'Contacto',
         'sections.technologies':  'tecnologías',
         'sections.experience':    'experiencia',
         'sections.projects':      'proyectos',
         'sections.education':     'educación',
         'sections.contact':       'contacto',
+        'skills.intro':           'Herramientas y tecnologías que utilizo para transformar ideas en soluciones funcionales.',
         'exp.1.date':             '2023 — hoy',
         'exp.1.role':             'Profesor clases particulares de Ingles',
         'exp.1.company':          'Autonomo',
         'exp.1.desc':             'Clases de inglés a estudiantes de diferentes niveles.',
         'exp.2.role':             'Vendedor en negocio familiar',
+        'exp.2.date':             '2021 — 2025',
         'exp.2.company':          'Grandiet - Negocio familiar',
         'exp.2.desc':             'Atención al cliente y ventas.',
         'proj.1.desc':            'Buscá cualquier Pokémon por número o nombre y consultá su tipo, sprite y estadísticas base en tiempo real.',
         'proj.2.desc':            'Tablero de tareas con drag & drop entre columnas, persistencia en localStorage y formulario para agregar tareas.',
+        'proj.3.desc':            'Creá rankings personalizados sobre cualquier tema y organizá tus opciones de forma simple e intuitiva.',
         'proj.more':              'ver más →',
+        'edu.1.date':             '2015 — 2021',
         'edu.1.title':            'Bachiller en informática',
         'edu.1.institution':      'Instituto Jose Peña - Colegio secundario',
+        'edu.2.date':             '2022 — En curso',
         'edu.2.title':            'Ingeniería en Sistemas de Información',
         'edu.2.institution':      'Universidad Tecnológica de Córdoba - FRC',
+        'edu.3.date':             '2010 — 2019',
         'edu.3.title':            'Academia de Inglés',
         'edu.3.institution':      'IICANA',
+        'edu.4.date':             '2019',
         'edu.4.title':            'ECCE - Examen de Certificación de Inglés - Nivel B2',
         'edu.4.institution':      'Universidad de Michigan',
       },
@@ -305,44 +328,51 @@
         'nav.projects':           'projects',
         'nav.contact':            'contact',
         'hero.label':             'fullstack developer',
-        'hero.desc':              'Your description goes here.',
+        'hero.desc':              'I am an Information Systems Engineering student at UTN Córdoba with a strong interest in software development and problem-solving. My current stack has two main pillars:<br>Backend & Logic: Solid experience and a strong foundation in Python.<br>Full-Stack Web Development: Building dynamic solutions with JavaScript, Node.js, HTML5, and CSS3.<br>I am driven by continuous learning and enjoy taking projects from local development all the way to production deployment.',
         'hero.contact':           'Contact',
         'sections.technologies':  'technologies',
         'sections.experience':    'experience',
         'sections.projects':      'projects',
         'sections.education':     'education',
         'sections.contact':       'contact',
+        'skills.intro':           'Tools and technologies I use to turn ideas into functional solutions.',
         'exp.1.date':             '2023 — present',
-        'exp.1.role':             'Fullstack Developer',
-        'exp.1.company':          'Company / Project',
-        'exp.1.desc':             'Brief description of your responsibilities and technologies used.',
-        'exp.2.role':             'Frontend Developer',
-        'exp.2.company':          'Previous company',
-        'exp.2.desc':             'Brief description. You can mention notable projects or achievements.',
+        'exp.1.role':             'English Tutor',
+        'exp.1.company':          'Autonomous',
+        'exp.1.desc':             'Taught English classes to students of different levels.',
+        'exp.2.role':             'Salesperson at family business',
+        'exp.2.date':             '2021 — 2025',
+        'exp.2.company':          'Grandiet - Family business',
+        'exp.2.desc':             'Worked in sales and customer service.',
         'proj.1.desc':            'Search any Pokémon by number or name and check its type, sprite and base stats in real time.',
         'proj.2.desc':            'Task board with drag & drop between columns, localStorage persistence and a form to add tasks.',
+        'proj.3.desc':            'Create custom rankings on any topic and organize your options in a simple, intuitive way.',
         'proj.more':              'See more →',
-        'edu.1.title':            'Bachiller en informática',
-        'edu.1.institution':      'Instituto Jose Peña - Colegio secundario',
-        'edu.2.title':            'Systems Information Engineering',
-        'edu.2.institution':      'Cordoba Technological University - FRC',
+        'edu.1.date':             '2015 — 2021',
+        'edu.1.title':            'High School Diploma in Computer Science',
+        'edu.1.institution':      'Instituto José Peña - Secondary School',
+        'edu.2.date':             '2022 — Present',
+        'edu.2.title':            'Information Systems Engineering',
+        'edu.2.institution':      'National Technological University, Córdoba Regional Faculty',
+        'edu.3.date':             '2010 — 2019',
         'edu.3.title':            'English Academy',
         'edu.3.institution':      'IICANA',
-        'edu.4.title':            'ECCE - Examination for the Certificate of Competency in English- Level B2',
-        'edu.4.institution':      'Universidad de Michigan',
+        'edu.4.date':             '2019',
+        'edu.4.title':            'ECCE - Examination for the Certificate of Competency in English - B2 Level',
+        'edu.4.institution':      'University of Michigan',
       }
     };
  
-     let currentLang = 'es';
+    let currentLang = localStorage.getItem('lang') || 'es';
  
     function applyLang(lang) {
       const dict = translations[lang];
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (dict[key] !== undefined) el.textContent = dict[key];
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
       });
       document.getElementById('langLabel').textContent = lang === 'es' ? 'EN' : 'ES';
-      htmlEl.setAttribute('lang', lang);
+      html.setAttribute('lang', lang);
       localStorage.setItem('lang', lang);
     }
  
@@ -351,8 +381,62 @@
       currentLang = currentLang === 'es' ? 'en' : 'es';
       applyLang(currentLang);
     });
+
+    applyLang(currentLang);
+
+    const revealGroups = document.querySelectorAll('section');
+    const revealElements = [];
+
+    revealGroups.forEach(section => {
+      const elements = section.querySelectorAll(
+        '.section-header, .skills-intro, .skill-tag, .timeline-item, .project-card, .education-item, .contact-item'
+      );
+
+      elements.forEach((element, index) => {
+        element.classList.add('reveal');
+        element.style.setProperty('--reveal-delay', `${Math.min(index * 70, 280)}ms`);
+        revealElements.push(element);
+      });
+    });
+
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        threshold: 0.12,
+        rootMargin: '0px 0px -40px'
+      });
+
+      revealElements.forEach(element => revealObserver.observe(element));
+    } else {
+      revealElements.forEach(element => element.classList.add('is-visible'));
+    }
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      let pointerFrame;
+
+      card.addEventListener('pointermove', event => {
+        if (pointerFrame) cancelAnimationFrame(pointerFrame);
+
+        pointerFrame = requestAnimationFrame(() => {
+          const bounds = card.getBoundingClientRect();
+          card.style.setProperty('--mouse-x', `${event.clientX - bounds.left}px`);
+          card.style.setProperty('--mouse-y', `${event.clientY - bounds.top}px`);
+        });
+      });
+
+      card.addEventListener('pointerleave', () => {
+        if (pointerFrame) cancelAnimationFrame(pointerFrame);
+        pointerFrame = null;
+        card.style.removeProperty('--mouse-x');
+        card.style.removeProperty('--mouse-y');
+      });
+    });
   </script>
 
 </body>
 </html>
- 
