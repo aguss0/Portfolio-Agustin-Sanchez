@@ -1,0 +1,161 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - generic [ref=e4]: as / fullstack dev
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Sobre mí" [ref=e7] [cursor=pointer]:
+            - /url: "#sobre-mi"
+        - listitem [ref=e8]:
+          - link "experiencia" [ref=e9] [cursor=pointer]:
+            - /url: "#experiencia"
+        - listitem [ref=e10]:
+          - link "proyectos" [ref=e11] [cursor=pointer]:
+            - /url: "#proyectos"
+        - listitem [ref=e12]:
+          - link "contacto" [ref=e13] [cursor=pointer]:
+            - /url: "#contacto"
+      - generic [ref=e14]:
+        - button "EN" [ref=e15] [cursor=pointer]
+        - button "Cambiar tema" [ref=e17] [cursor=pointer]
+  - main [ref=e20]:
+    - generic [ref=e21]:
+      - paragraph [ref=e22]: fullstack developer
+      - heading [level=1] [ref=e23]:
+        - text: Agustín
+        - strong [ref=e24]: Sánchez
+      - paragraph [ref=e25]: Estudiante de Ingeniería en Sistemas de Información con un fuerte interés y base técnica en desarrollo web y backend. Cuento con experiencia práctica construyendo aplicaciones robustas con Python, JavaScript y Node.js, aplicando de manera consistente buenas prácticas de programación, arquitectura limpia y control de versiones.
+      - generic [ref=e26]:
+        - link "GitHub" [ref=e27] [cursor=pointer]:
+          - /url: https://github.com/aguss0
+        - link "LinkedIn" [ref=e30] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/agustin-sanchez-aa27961bb/
+        - link "Contacto" [ref=e31] [cursor=pointer]:
+          - /url: "#contacto"
+    - generic [ref=e32]:
+      - generic [ref=e33]: tecnologías
+      - paragraph [ref=e36]: Herramientas y tecnologías que utilizo para transformar ideas en soluciones funcionales.
+      - generic [ref=e37]:
+        - generic [ref=e38]:
+          - generic [aria-hidden] [ref=e39]: 
+          - text: JavaScript
+        - generic [ref=e40]:
+          - generic [aria-hidden] [ref=e41]: 
+          - text: Python
+        - generic [ref=e42]:
+          - generic [aria-hidden] [ref=e43]: 
+          - text: Node.js
+        - generic [ref=e44]:
+          - generic [aria-hidden] [ref=e45]: 
+          - text: Express
+        - generic [ref=e46]:
+          - generic [aria-hidden] [ref=e47]: 
+          - text: HTML5
+        - generic [ref=e48]:
+          - generic [aria-hidden] [ref=e49]: 
+          - text: CSS3
+        - generic [ref=e50]:
+          - generic [aria-hidden] [ref=e51]: 
+          - text: SQL Server
+        - generic [ref=e52]:
+          - generic [aria-hidden] [ref=e53]: 
+          - text: Git
+        - generic [ref=e54]:
+          - generic [aria-hidden] [ref=e55]: 
+          - text: GitHub
+        - generic [ref=e56]:
+          - generic [aria-hidden] [ref=e57]: 
+          - text: Postman
+        - generic [ref=e58]:
+          - generic [aria-hidden] [ref=e59]: ⟳
+          - text: Scrum
+    - generic [ref=e60]:
+      - generic [ref=e61]: experiencia
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e66]: Oct 2026 — hoy
+          - generic [ref=e67]:
+            - heading "Implementador" [level=3] [ref=e68]
+            - paragraph [ref=e69]: Mi Docta — Municipalidad de Córdoba
+            - paragraph [ref=e70]: Relevamiento e implementación de trámites digitales en las distintas áreas de la Municipalidad de Córdoba.
+        - generic [ref=e71]:
+          - generic [ref=e72]: 2022 — 2025
+          - generic [ref=e73]:
+            - heading "Vendedor" [level=3] [ref=e74]
+            - paragraph [ref=e75]: Grandiet — Negocio familiar
+            - paragraph [ref=e76]: Gestión integral del área de ventas, optimizando la atención al público y la resolución de consultas. Asesoramiento a clientes para identificar los productos que mejor se adaptaban a sus necesidades.
+        - generic [ref=e77]:
+          - generic [ref=e78]: 2021 — 2022
+          - generic [ref=e79]:
+            - heading "Profesor particular de inglés" [level=3] [ref=e80]
+            - paragraph [ref=e81]: Autónomo
+            - paragraph [ref=e82]: Planificación y dictado de clases personalizadas para estudiantes de diversos niveles académicos, adaptando la metodología a las necesidades de cada alumno.
+    - generic [ref=e83]:
+      - generic [ref=e84]: proyectos
+      - generic [ref=e87]:
+        - link "Pokédex App Buscá cualquier Pokémon por número o nombre y consultá su tipo, sprite y estadísticas base en tiempo real. JavaScript PokéAPI Fetch ver más →" [ref=e88] [cursor=pointer]:
+          - /url: https://pokedexx-as.vercel.app
+          - heading "Pokédex App" [level=3] [ref=e89]
+          - paragraph [ref=e90]: Buscá cualquier Pokémon por número o nombre y consultá su tipo, sprite y estadísticas base en tiempo real.
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]: JavaScript
+              - generic [ref=e94]: PokéAPI
+              - generic [ref=e95]: Fetch
+            - generic [ref=e96]: ver más →
+        - link "Kanban Board Tablero de tareas con drag & drop entre columnas, persistencia en localStorage y formulario para agregar tareas. React Tailwind localStorage ver más →" [ref=e97] [cursor=pointer]:
+          - /url: https://trazo-as.vercel.app
+          - heading "Kanban Board" [level=3] [ref=e98]
+          - paragraph [ref=e99]: Tablero de tareas con drag & drop entre columnas, persistencia en localStorage y formulario para agregar tareas.
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - generic [ref=e102]: React
+              - generic [ref=e103]: Tailwind
+              - generic [ref=e104]: localStorage
+            - generic [ref=e105]: ver más →
+        - link "Rank It Creá rankings personalizados sobre cualquier tema y organizá tus opciones de forma simple e intuitiva. Rankings Lists Web App ver más →" [ref=e106] [cursor=pointer]:
+          - /url: https://rank-itt.vercel.app
+          - heading "Rank It" [level=3] [ref=e107]
+          - paragraph [ref=e108]: Creá rankings personalizados sobre cualquier tema y organizá tus opciones de forma simple e intuitiva.
+          - generic [ref=e109]:
+            - generic [ref=e110]:
+              - generic [ref=e111]: Rankings
+              - generic [ref=e112]: Lists
+              - generic [ref=e113]: Web App
+            - generic [ref=e114]: ver más →
+    - generic [ref=e115]:
+      - generic [ref=e116]: educación
+      - generic [ref=e119]:
+        - generic [ref=e120]: 2022 — En curso
+        - generic [ref=e121]:
+          - heading "Ingeniería en Sistemas de Información" [level=3] [ref=e122]
+          - paragraph [ref=e123]: Universidad Tecnológica Nacional — Facultad Regional Córdoba (UTN-FRC)
+      - generic [ref=e124]:
+        - generic [ref=e125]: 2015 — 2021
+        - generic [ref=e126]:
+          - heading "Bachiller en Informática" [level=3] [ref=e127]
+          - paragraph [ref=e128]: Instituto José Peña
+      - generic [ref=e129]:
+        - generic [ref=e130]: "2019"
+        - generic [ref=e131]:
+          - heading "Examination for the Certificate of Competency in English (ECCE)" [level=3] [ref=e132]
+          - paragraph [ref=e133]: University of Michigan
+      - generic [ref=e134]:
+        - generic [ref=e135]: 2010 — 2019
+        - generic [ref=e136]:
+          - heading "Academia de Inglés" [level=3] [ref=e137]
+          - paragraph [ref=e138]: IICANA
+    - generic [ref=e139]:
+      - generic [ref=e140]: contacto
+      - generic [ref=e143]:
+        - link "agustinicolassanchez@gmail.com" [ref=e144] [cursor=pointer]:
+          - /url: mailto:agustinicolassanchez@gmail.com
+        - link "+54 351 2106126" [ref=e148] [cursor=pointer]:
+          - /url: tel:+543512106126
+        - link "github.com/aguss0" [ref=e151] [cursor=pointer]:
+          - /url: https://github.com/aguss0
+        - link "linkedin.com/in/agustin-sanchez-aa27961bb" [ref=e154] [cursor=pointer]:
+          - /url: https://www.linkedin.com/in/agustin-sanchez-aa27961bb/
+        - generic [ref=e159]: Córdoba, Argentina
+  - contentinfo [ref=e163]:
+    - paragraph [ref=e165]: Agustín Sánchez · 2026
